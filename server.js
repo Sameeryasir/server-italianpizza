@@ -45,10 +45,4 @@ app.get('/products', async (req, res) => {
   }
 });
 
-// Start the server
-const port = 3008;
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
-
 module.exports = app;
