@@ -12,16 +12,19 @@ app.use(cors({
 
 
 // Connect to MongoDB Atlas
-mongoose.connect('mongodb+srv://sameeryasir:8yt4Xa1TM8FVyZEt@cluster0.kdp7ch4.mongodb.net', {
+const connectDB = async () => {
+  mongoose.connect('mongodb+srv://sameeryasir:8yt4Xa1TM8FVyZEt@cluster0.kdp7ch4.mongodb.net', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-})
+  })
   .then(() => {
     console.log('Connected to MongoDB Atlas');
   })
   .catch((error) => {
     console.error('Error connecting to MongoDB Atlas:', error);
   });
+}
+
 
 // Define the product schema
 const productSchema = new mongoose.Schema({
@@ -47,6 +50,9 @@ app.get('/products', async (req, res) => {
 
 // Start the server
 const port = 3008;
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
+connectDB().then(() => {
+  app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+  });
+})
+
