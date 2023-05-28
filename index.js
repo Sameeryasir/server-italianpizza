@@ -35,7 +35,7 @@ const productSchema = new mongoose.Schema({
 const Product = mongoose.model('Product', productSchema);
 
 // Define a route to get all products
-app.get('/api/products', async (req, res) => {
+app.get('/products', async (req, res) => {
   try {
     const products = await Product.find();
     res.json(products);
@@ -50,5 +50,3 @@ const port = 3008;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
-
-module.exports = app;
